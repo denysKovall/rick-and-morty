@@ -1,0 +1,27 @@
+<mat-progress-bar color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<ng-container *ngIf="locationsList$ | async as locationsList">
+  <ng-container *ngIf="locationsList.length as locationsListLength">
+    <div class="locations-list py-3 container d-flex flex-wrap justify-content-around">
+      <ng-container *ngFor="let location of locationsList | slice: pagination.fromItems : pagination.toItems">
+        <div class="location col-lg-3 col-md-4 col-12 text-center m-3 border-light border pb-3">
+          <a [routerLink]="['/locations', location.id]" class="text-decoration-none">
+            <p class="text-white"><span class="h3">Location name: </span><span class="h1">{{location.name}}</span></p>
+            <p class="text-white"><span class="h4">Location id: </span><span class="h5">{{location.id}}</span></p>
+            <p class="text-white"><span
+              class="d-block">The dimension in which the location is located: </span><span>{{location.dimension}}</span>
+            </p>
+            <p class="text-white"><span class="d-block">The type of the location: </span><span>{{location.type}}</span></p>
+          </a>
+          <app-favorite-button class="favorite-btn" [item]="location"></app-favorite-button>
+        </div>
+      </ng-container>
+      <app-paginator class="col-12"
+                     (emitPageEvent)="onPageChange($event)"
+                     [pageSizeOptions]="[2,5,locationsListLength]"
+                     [totalCount]="locationsListLength"
+                     [pagination]="pagination">
+
+      </app-paginator>
+    </div>
+  </ng-container>
+</ng-container>

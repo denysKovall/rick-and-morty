@@ -1,0 +1,17 @@
+.character-card {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .episode-item {
+    border: 1px solid white;
+    border-radius: 40px;
+  }
+  .favorite-btn{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
+  ::ng-deep .owl-carousel-o .owl-nav {
+    margin-top: 0;
+  }
+}

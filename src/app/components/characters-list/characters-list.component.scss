@@ -1,0 +1,31 @@
+@import "../../variables";
+
+.characters-list {
+  .character {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+
+    .Alive {
+      &::before {
+        @include character-status(#79ff79);
+      }
+    }
+
+    .Dead {
+      &::before {
+        @include character-status(red);
+      }
+    }
+
+    .unknown {
+      &::before {
+        @include character-status(gray);
+      }
+    }
+    .favorite-btn{
+      bottom: 0;
+      position: absolute;
+      left: 15px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<form class="w-100 position-relative">
+  <a class="bg-transparent text-white border-0 mdc-icon-button mat-mdc-icon-button mat-mdc-button-base" mat-icon-button
+     (click)="toggleSearch()">
+    <mat-icon>search</mat-icon>
+  </a>
+  <div class="search-input" [class.d-inline-block]="showSearch">
+    <div class="flex-column d-flex align-items-end">
+      <form class="bg-white">
+        <mat-checkbox class="filter-checkbox" [(ngModel)]="filters[0]" name="characters">Characters</mat-checkbox>
+        <mat-checkbox class="filter-checkbox" [(ngModel)]="filters[1]" name="locations">Locations</mat-checkbox>
+        <mat-checkbox class="filter-checkbox" [(ngModel)]="filters[2]" name="episodes">Episodes</mat-checkbox>
+      </form>
+      <mat-form-field class="mat-form-field">
+        <input matInput placeholder="Characters, episodes, or locations" #searchInput>
+      </mat-form-field>
+    </div>
+  </div>
+  <ng-container *ngIf="searchData$ | async as searchData">
+    <mat-list *ngIf="isSearchVisible && showSearch" role="list" class="search-results position-absolute bg-white p-0">
+      <ng-container *ngFor="let item of searchData">
+        <mat-list-item role="listitem" class="d-flex row justify-content-center align-items-center m-0 h-100">
+          <mat-icon class="mb-2 p-0" matListItemIcon>{{icons[item.__typename]}}</mat-icon>
+          <p class="text-wrap" [routerLink]="['/',( item.__typename + 's').toLowerCase(),item.id]"> {{item.name}}</p>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </ng-container>
+</form>

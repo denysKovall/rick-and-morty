@@ -1,0 +1,11 @@
+@mixin character-status($color) {
+  display: block;
+  background-color: $color;
+  border-radius: 40px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 15px;
+}

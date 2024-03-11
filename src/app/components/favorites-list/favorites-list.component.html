@@ -1,0 +1,16 @@
+<ng-container *ngIf="favorites$ | async as favorites">
+  <ng-container *ngIf="favorites.length; else emptyFavorites">
+    <div class="favorites container col-12 d-flex flex-wrap justify-content-around">
+      <ng-container *ngFor="let item of favorites">
+        <div class="favorite-item col-md-4 mt-3 col-6 text-center p-3 border-light border" [routerLink]="['/',(item.__typename + 's').toLowerCase(), item.id]">
+          <mat-icon class="remove-icon" (click)="removeFromStore(item)">clear</mat-icon>
+          <p class="text-white">{{item.__typename}}</p>
+          <a class="text-white fw-bold">{{item.name}}</a>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #emptyFavorites>
+  <p class="empty-favorites text-white h1 text-center pt-5">No Favorites ;(</p>
+</ng-template>

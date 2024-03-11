@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="header">
+  <div class="container d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <mat-icon-button class="header_drop-down" [matMenuTriggerFor]="dropdownMenu">
+        <mat-icon>menu</mat-icon>
+      </mat-icon-button>
+      <mat-menu #dropdownMenu="matMenu">
+        <button mat-menu-item routerLink="/characters" >Characters</button>
+        <button mat-menu-item routerLink="/episodes">Episodes</button>
+        <button mat-menu-item routerLink="/locations">Locations</button>
+      </mat-menu>
+      <a class="px-1 px-md-3 text-white app-name" routerLink="/">Rick and morty API</a>
+    </div>
+    <div class="d-flex align-items-center justify-content-end col-3">
+      <app-search></app-search>
+      <a mat-icon-button routerLink="/favorites">
+        <mat-icon [color]="(noFavorites$ | async) ? 'accent' : 'warn'">favorite</mat-icon>
+      </a>
+    </div>
+  </div>
+</mat-toolbar>

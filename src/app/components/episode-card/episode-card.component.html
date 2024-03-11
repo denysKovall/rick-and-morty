@@ -1,0 +1,24 @@
+<mat-progress-bar color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<ng-container *ngIf="episodeInfo$ | async as episodeInfo">
+  <div class="py-3">
+    <div class="d-flex episode-card flex-column align-items-center col-8 text-white text-center pt-3 m-auto position-relative">
+      <app-favorite-button class="favorite-btn" [item]="episodeInfo"></app-favorite-button>
+      <h1 class="text-white pt-3">{{episodeInfo.name}}</h1>
+      <p class="pt-3">Air Date: <span class="fw-bold">{{episodeInfo.air_date}}</span></p>
+      <p>Episode created: <span class="fw-bold">{{episodeInfo.created}}</span></p>
+      <p>Episode: <span class="fw-bold">{{episodeInfo.episode}}</span></p>
+      <p class="h3">Characters in episode</p>
+      <owl-carousel-o [options]="customOptions" class="col-12 px-3">
+        <ng-container *ngFor="let character of episodeInfo.characters">
+          <ng-template carouselSlide [id]="character.id">
+            <div class="character-item mx-2 bg-white">
+              <a [routerLink]="['/characters', character.id]" class="text-dark m-0 text-decoration-none">{{character.name}}
+                <img class="d-block w-100" [src]="character.image">
+              </a>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</ng-container>

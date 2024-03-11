@@ -1,0 +1,24 @@
+<mat-progress-bar color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<ng-container *ngIf="charactersList$ | async as charactersList">
+  <ng-container *ngIf="charactersList.length as charactersLength">
+    <div class="characters-list py-3 container d-flex flex-wrap justify-content-around">
+      <ng-container *ngFor="let character of charactersList | slice: pagination.fromItems : pagination.toItems">
+          <div class="character col-lg-3 col-md-4 col-12 text-center m-3 border-light border pb-3">
+            <a [routerLink]="['/characters', character.id]" class="text-decoration-none">
+              <img class="d-inline-block w-100" [src]="character.image">
+              <p class="h2 text-white">{{character.name}}</p>
+              <p class="h3 text-white {{character.status}} position-relative d-inline-block">{{character.status}}</p>
+              <p class="text-white d-block pb-1"><span>Character's species: </span>{{character.species}}</p>
+            </a>
+            <app-favorite-button class="favorite-btn" [item]="character"></app-favorite-button>
+          </div>
+      </ng-container>
+      <app-paginator class="col-12"
+                     (emitPageEvent)="onPageChange($event)"
+                     [pageSizeOptions]="[2,5,charactersLength]"
+                     [totalCount]="charactersLength" [pagination]="pagination">
+
+      </app-paginator>
+    </div>
+  </ng-container>
+</ng-container>

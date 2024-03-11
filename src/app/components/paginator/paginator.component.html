@@ -1,0 +1,9 @@
+<mat-paginator
+  [pageSizeOptions]="pageSizeOptions"
+  [showFirstLastButtons]="true"
+  [length]="totalCount"
+  [pageIndex]="pagination.page"
+  [pageSize]="pagination.size"
+  appSelectorsPaginator
+  (page)="onPageEvent($event)"
+></mat-paginator>

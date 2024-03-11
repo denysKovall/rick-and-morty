@@ -1,0 +1,11 @@
+.location-card{
+  background-color: rgba(0, 0, 0, 0.5);
+  .character-item {
+    border: 1px solid white;
+  }
+  .favorite-btn{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}

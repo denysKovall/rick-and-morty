@@ -1,0 +1,3 @@
+<a mat-icon-button class="favorite-btn" (click)="checkFavorites(item)">
+  <mat-icon [color]="favorites.includes(item.name) ? 'warn' : 'accent'">favorite</mat-icon>
+</a>

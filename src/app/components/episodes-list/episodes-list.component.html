@@ -1,0 +1,25 @@
+<mat-progress-bar color="warn" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<ng-container *ngIf="episodesList$ | async as episodesList">
+  <ng-container *ngIf="episodesList.length as episodesListLength">
+    <div class="episodes-list py-3 container d-flex flex-wrap justify-content-around">
+      <ng-container *ngFor="let episode of episodesList | slice: pagination.fromItems : pagination.toItems">
+        <div class="episode col-lg-3 col-md-4 col-12 text-center m-3 border-light border py-3">
+          <a [routerLink]="['/episodes', episode.id]" class="text-decoration-none">
+            <div class="text-white"><span class="h3">Episode name: </span><span class="h2">{{episode.name}}</span></div>
+            <div class="text-white"><span class="h4">Episode id: </span><span class="h5">{{episode.id}}</span></div>
+            <p class="text-white"><span class="d-block">The air date of the episode:</span>{{episode.air_date}}</p>
+            <p class="text-white"><span class="d-block">The code of the episode:</span>{{episode.episode}}</p>
+          </a>
+          <app-favorite-button class="favorite-btn" [item]="episode"></app-favorite-button>
+        </div>
+      </ng-container>
+      <app-paginator class="col-12"
+                     (emitPageEvent)="onPageChange($event)"
+                     [pageSizeOptions]="[2,5,episodesListLength]"
+                     [totalCount]="episodesListLength"
+                     [pagination]="pagination">
+
+      </app-paginator>
+    </div>
+  </ng-container>
+</ng-container>
