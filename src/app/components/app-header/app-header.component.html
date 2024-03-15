@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" class="header">
   <div class="container d-flex justify-content-between">
     <div class="d-flex align-items-center">
-      <mat-icon-button class="header_drop-down" [matMenuTriggerFor]="dropdownMenu">
+      <button mat-icon-button class="header_drop-down" [matMenuTriggerFor]="dropdownMenu">
         <mat-icon>menu</mat-icon>
-      </mat-icon-button>
+      </button>
       <mat-menu #dropdownMenu="matMenu">
         <button mat-menu-item routerLink="/characters" >Characters</button>
         <button mat-menu-item routerLink="/episodes">Episodes</button>
